@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Dokumentacija</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Početna stranica">
+        <meta name="author" content="Domagoj Ergović">
+        <meta name="keywords" content="skupine,komentar,webdip">
+        <link rel="stylesheet" type="text/css" href="css/domergovi.css">
+    </head>
+    <body>
+        <header>
+            <figure id="slikaZaglavlje">
+                <img src="slike/homeButton.png" usemap="#mapaZaglavlje" alt="SlikaZaglavlja" width="200">
+                <map name="mapaZaglavlje">
+                    <area href="pocetna.php" shape="circle" alt="krug" coords="99,72,67" target="_blank"/>
+                </map>
+                <figcaption hidden="hidden">Slika zaglavlja</figcaption>
+            </figure>
+        </header>
+        
+        <h1 id="glavniNaslovKorisnik">DOKUMENTACIJA</h1>
+        <h2 id="sporedniNaslov">E - POVEZIVANJE INTERESNIH SKUPINA</h2>
+        
+        <nav>
+            <ul class="meni">
+                <li>
+                    <a href="pocetna.php">POČETNA</a>
+                </li>
+                <li>
+                    <a href="registracija.php">REGISTRACIJA</a>
+                </li>
+                <li>
+                    <a href="prijava.php">PRIJAVA</a>
+                </li>
+            </ul>
+        </nav>
+        
+        
+        <section id="sekcijaDokumentacija">
+            <h2 id="opis1">Opis projektnog zadatka</h2>
+                <p id="projektniZadatak">
+                    Projektni zadatak bio je kreirati sustav koji omogućuje povezivanje osoba na temelju njihovih zajedničkih
+                    područja interesa. Naime, projekt je trebao biti kreiran za četiri vrste korisnika, a to su redom administrator
+                    moderator, registrirani i neregistrirani korisnik. Neregistrirani korisnik ima najmanje ovlasti, međutim registracijom
+                    te prijavom u sustav dobiva više mogućnosti. Na taj način korisnik može pregledavati i uređivati svoj profil,
+                    pretplatiti se na područja interesa, skupljati bodove na razne načine (npr. komentiranjem diskusije) te s dobivenim 
+                    bodovima kupiti ponuđene kupone za odabrana područja interesa. Administrator je taj koji dodjeljuje moderatora nekom području
+                    interesa, dok obojca mogu kreirati diskusije, slati obavijesti, zabraniti korisniku komentiranje unutar diskusije ili
+                    pak zabraniti pristup sustavu (ovu ovlast ima samo administrator).
+                </p><br>
+            <hr>
+            <h2 id="opis2">Opis projektnog rješenja</h2>
+                <p id="projektnoRjesenje">
+                   Projektno rješenje izrađeno je prema uputama nastavnika na kolegiju. Sustav je kreiran na način da bilježi svaki korak korisnika 
+                   od njegova početka(ulaz u sustav, registracija i prijava) pa do kraja (odjava iz sustava). Pri izradi korišteni su jQuery i PHP 
+                   čime se postiže i obavlja cijela funkcionalnost sustava (rad s bazom i upozorenja korisniku). 
+                   Nažalost, ovaj projekt nije dovršen do samoga kraja zbog nedostatka slobodnog vremena. Međutim, ja kao kreator rješenja
+                   smatram da je sustav i ovako prilično funkcionalan i da svakom korisniku ostavlja dobar dojam jer je dosta jednostavan
+                   i lako razumljiv svima.
+                </p><br>
+            <hr>
+            <h2 id="opis3">ERA model</h2>
+                <p id="eraModel">
+                   ERA model projektnog rješenja sastoji se od 22 tablice. Prije svega tu je tablica korisnik u koju se bilježe 
+                   svi korisnici navedenog sustava. Unutar te tablice navedeni su svi potrebni atributi kako bi se korisnik
+                   evidentirao na ispravan način u sustavu. Među ostalim tu su i ime, prezime, lozinka, ali i email preko kojeg se 
+                   i odvija komunikacija između moderatora/administratora i korisnika. Nadalje tu je tablica tip korisnika u kojoj se
+                   nalaze svi tipovi korisnika navedenog sustava (administrator, moderator i registrirani korisnik). Tablica prijava_1 
+                   i prijava_2 koje služe za bilježenje zadnje uspješne prijave u sustav putem prijave u jedan ili dva koraka s tim da 
+                   se atributom zabranjen_pristup u tablici prijava_1 može korisniku zabraniti pristup sustavu(admin), dok se u tablici
+                   prijava_2 nalazi atribut za spremanje petominutnog koda. U tablici podrucje_interesa nalaze se sva područja interesa
+                   i ona su povezana na tablicu diskusija gdje se nalaze diskusije koje odgovaraju određenom području interesa i svaka od 
+                   tih diskusija može imati svoje komentare koji se bilježe u tablici komentar. Nadalje, kako bi korisnik ili diskusija primali 
+                   obavijesti koje se spremaju u tablicu obavijest isti mora biti pretplaćen na neko od područja interesa što se bilježi u 
+                   tablici odabir_podrucje_interesa, dok se korisnici diskusije bilježe u tablici pretplaceni_korisnici u kojoj se nalazi 
+                   i atribut zabranjen_pristup kojim moderator/administrator određenom korisniku onemogućuju pravo komentiranja unutar diskusije.
+                   Također moderator nekog područja može svakoj diskusiji promijeniti izgled i ti podaci se spremaju u tablicu izgled_stranice.
+                   Svaki korisnik tijekom svog rada u sustavu skuplja bodove za određene akcije iz tablice vrsta_akcije i isti se bilježe
+                   u tablicu log_bodovi. Skupljene bodove korisnik može potrošiti kupovinom kupona iz tablice kupon_clanstva, gdje se prije kupovine
+                   kupon sprema u košaricu (tablica kosarica) i nakon kupnje seli u tablicu kupovina. Tablica log_aplikacije sa svojim podatablicama
+                   log_aplikacije_sustav, log_aplikacije_baza, log_aplikacije_ostalo bilježe sve podatke potrebne administratoru za nadzor sustava 
+                   od prijave do odjave korisnika. Tu je još i tablica konfiguracija sustava potrebna administratoru za pomak vremena sustava, straničenje, itd. 
+                   te tablica uspjesna_prijava u kojoj se biljezi svaka neuspjesna prijava bilo kojeg korisnika u sustav pa tako i onog neregistriranog
+                   zbog čega ista nije povezana na tablicu korisnik.
+                </p><br>
+                    <a href="slike/konacniEraModel.png" target="_blank">
+                        <figure style="margin-left: 35%">
+                            <img src="slike/konacniEraModel.png" alt="eraModel" width="400">
+                            <figcaption style="margin-left: 13%">Slika ERA modela sustava</figcaption>
+                        </figure>
+                    </a>
+                <hr>
+                
+                
+            <h2 id="opis3">Skripte sustava</h2>
+                
+                <table id="tablicaKorisnici">
+            <colgroup>
+                <col style="width: 10%">
+                <col style="width: 50%">
+            </colgroup>
+            <thead id="tablica_header">
+                <tr>
+                    <th>SKRIPTA</th>
+                    <th>OPIS SKRIPTE</th>
+            </thead>
+            
+            <tbody>
+                <tr>
+                    <td>pocetna.php</td>
+                    <td>Skripta na kojoj se ispisuju sva područja interesa sa linkom na pregled diskusija.</td>
+                </tr>
+                <tr>
+                    <td>aktivacija.php</td>
+                    <td>Skripta za aktivaciju korisničkog računa nakon registracije.</td>
+                </tr>
+                <tr>
+                    <td>dnevnik.php</td>
+                    <td>Skripta namjenjena administratoru za pregled svih aktivnosti svih korisnika u sustavu (log_aplikacije i podtablice)</td>
+                </tr>
+                <tr>
+                    <td>dohvatiPodatke.php</td>
+                    <td>Skripta koja dohvaća podatke o korisniku za kreiranje xml-a</td>
+                </tr>
+                <tr>
+                    <td>dokumentacija.html</td>
+                    <td>Prikaz podataka o kreiranju sustava (ERA model, navigacijski dijagram, korištene skripte, potrebni opisi...)</td>
+                </tr>
+                <tr>
+                    <td>korisnikBodovi.php</td>
+                    <td>Ispis bodova po akcijama te ukupno potrošenih i skupljenih bodova za svakog korisnika.</td>
+                </tr>
+                <tr>
+                    <td>kosarica.php</td>
+                    <td>Skripta za prikaz odabranih kupona korisnika.</td>
+                </tr>
+                <tr>
+                    <td>najKomentarDiskusije.php</td>
+                    <td>Skripta za ispis 3 diskusije sa najviše komentara.</td>
+                </tr>
+                <tr>
+                    <td>o_autoru.html</td>
+                    <td>Ispis podataka o autoru sustava.</td>
+                </tr>
+                <tr>
+                    <td>odjava.php</td>
+                    <td>Skripta za odjavu korisnika iz sustava.</td>
+                </tr>
+                <tr>
+                    <td>pomakVremena.php</td>
+                    <td>Skripta koja omogućuje pomak vremena administratoru sustava.</td>
+                </tr>
+                <tr>
+                    <td>pregledDiskusija.php</td>
+                    <td>Skripta koja omogućuje pregled diskusija i komentara po području interesa te komentiranje iste.</td>
+                </tr>
+                <tr>
+                    <td>pregledKupona.php</td>
+                    <td>Skripta koja omogućuje pregled kupljenih i slobodnih kupona.</td>
+                </tr>
+                <tr>
+                    <td>prijava.php</td>
+                    <td>Skripta koja omogućuje prijavu korisnika u sustav.</td>
+                </tr>
+                <tr>
+                    <td>profilKorisnika.php</td>
+                    <td>Skripta koja prikazuje podatke o korisniku te omogućuje ažuriranje istih. Također, prikazuje i skupljene i potrošene bodove.</td>
+                </tr>
+                <tr>
+                    <td>registracija.php</td>
+                    <td>Skripta koja omogućuje registraciju korisnika.</td>
+                </tr>
+                <tr>
+                    <td>stranicaAdministrator.php</td>
+                    <td>Skripta koja omogućuje administratoru dodavanje novog kupona, 
+                        područja interesa te blokiranje/odblokiranje korisnika sustava.</td>
+                </tr>
+                <tr>
+                    <td>stranicaModerator.php</td>
+                    <td>Skripta koja omogućuje administratoru/moderatoru kreiranje nove diskusije, 
+                        slanje obavijesti, definiranje kupona, provjeru koda kupona te blokiranje/odblokiranje korisnika u diskusijama.</td>
+                </tr>
+                <tr>
+                    <td>korisnici.php</td>
+                    <td>Skripta koja omogućuje administratoru pregled svih korisnika sustava.</td>
+                </tr>
+            </tbody>
+            </table>
+            <hr>
+            
+            
+            <h2 id="opis3">Navigacijski dijagram</h2>
+            <p id="eraModel">
+                  Navigacijski dijagram pokazuje kretanje kroz sustav. Naime, sustav mogu koristiti 4 vrste korisnika. To su
+                  administrator, moderator, registrirani i neregistrirani korisnik. Svaki od njih ima određene ovlasti. Tako 
+                  administrator ima sve ovlasti u sustavu i može raditi sve ono što mogu preostala 3 tipa korisnika. Moderator može
+                  raditi sve ono što mogu i neregistrirani i registrirani korisnik dok ne nema neke ovlasti koje ima administrator
+                  poput blokiranja korisnika za prijavu u sustav. Registrirani korinsik može sve ono što i neregistrirani ali ima još
+                  neke dodatne ovlasti poput kupovine kupona, skupljanja bodova, itd... Neregistrirani korisnik može pregledati
+                  početnu stranicu potom odabrati područje interesa i vidjeti 3 diskusije sa najviše komentara za to područje. Sa 
+                  te početne stranice može kao i svi ostali korisnici pogledati podatke o autoru sustava te pripadajuću dokumentaciju.
+                  Također, neregistrirani korisnik može postati registrirani registracijom u sustav, a potom se može prijaviti preko prijave.
+                  Nakon prijave korisnika u sustav korisniku se otvara njegov profil. Ukoliko je korisnik administrator on može raditi
+                  sljedeće radnje: kreirati područje interesa te dodjeliti moderatore, kreirati kupone članstva, pregledati statistiku lojalnosti
+                  pregledati sve korisnike sustava i njihove podatke, pregledati dnevnik sustava, podešavati konfiguraciju sustava te obavljati 
+                  CRUD operacije. Moderator može pregledati popis pretplaćenih korisnika na njegove diskusije, otvoriti novu diskusiju, zabraniti 
+                  pristup diskusiji, poslati obavijest,odabrati i definirati kupon za svoje područje, provjeriti postojanje kupona preko koda, 
+                  promijeniti izgled stranice te obavljati CRUD operacije. Obični registrirani korinsik može obavljati CRUD operacije, pregledati
+                  skupljene bodove, pregledati područja interesa na koja je pretplaćen, pregledati diskusije u tim područjima te iste komentirati,
+                  trošiti bodove dodajući prvo kupone u košaricu, a potom ih kupiti. Isto tako, kupljene i slobodne kupone može pregledati na određenoj stranici.
+                </p><br>
+                <a href="slike/gotovNavigacijski.png" target="_blank">
+                        <figure style="margin-left: 35%">
+                            <img src="slike/gotovNavigacijski.png" alt="navigacijski" width="400">
+                            <figcaption style="margin-left: 13%">Slika navigacijskog dijagrama</figcaption>
+                        </figure>
+                </a>
+            <hr>
+            <h2 id="opis1">Popis i opis korištenih tehnologija i alata</h2>
+            <div style="margin-left: 10%; float: left;">
+                <dl>
+                    <dt>Korištene tehnologije</dt>
+                        <dd>HTML5</dd>
+                        <dd>CSS3</dd>
+                        <dd>Javascript</dd>
+                        <dd>MySQL</dd>
+                        <dd>jQuery 1.2</dd>
+                        <dd>PHP 5.6</dd>
+                    <dt>------------------------------------</dt>
+                    <dt>Korišteni alati</dt>
+                        <dd>Net Beans 8.2</dd>
+                        <dd>phpMyAdmin 5.55</dd>
+                        <dd>MySQL Workbench 6.3</dd>
+                        <dd>draw.io</dd>
+                        <dd>FileZilla</dd>
+                        <dd>Putty</dd>
+                </dl><br>
+            </div>
+                <p id="eraModel">
+                  Projektni zadatak u potpunosti je izrađen u okruženju NetBeans 8.2 pri čemu su korištene različite tehnologije
+                  poput HTML5,CSS3,Javascript,jQuery 1.2 te PHP 5.6 i MySQL za rad s bazom. Izgled stranice uređen je uz pomoć
+                  HTML5 i CSS3 tehnologije dok se dinamičnost postiže korištenjem Javascript i jQuery 1.2. Ostali alati korišteni
+                  u projektu su phpMyAdmin 5.55 za izradu baze podataka, gdje je prvotno baza podataka sa pripadajućim tablicama
+                  kreirana u alatu MySQL Workbench 6.3, a potom učitana u sami phpMyAdmin. Za izradu navigacisjkog dijagrama
+                  korišten je alat sa stranice draw.io dok se podaci na serveru mogu uređivati uz pomoć FileZilla-e i Putty-a.
+                  Programsko rješenje instalirano je na računalu barka.foi.hr.
+                </p><br>
+            
+            <hr style="clear: both;">
+            <h2 id="opis3">Popis i opis korištenih vanjskih modula/biblioteka</h2>
+            <div style="margin-left: 5%;">    
+            <dl>
+                <dt>Korišteni moduli/biblioteke:</dt>
+                        <dd>1. Facebook Share API - Dostupno 15.06.2017. na https://developers.facebook.com/docs/plugins/share-button</dd>
+                        <dd>2. Twitter Share API - Dostupno 15.06.2017. na https://dev.twitter.com/web/tweet-button</dd>
+                        <dd>3. jQuery biblioteka - Dostupno 15.06.2017. na https://code.jquery.com/jquery-1.12.4.js</dd>
+                        <dd>4. jQuery biblioteka - Dostupno 15.06.2017. na https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js</dd>
+                        <dd>5. jQuery biblioteka - Dostupno 15.06.2017. na https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js</dd>
+                        <dd>6. DataTables biblioteka - Dostupno 15.06.2017. na https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js</dd>
+                        <dd>7. ReCaptcha biblioteka - Dostupno 15.06.2017. na https://www.google.com/recaptcha/api.js</dd>
+            </dl>
+            </div>
+            <p id="eraModel">
+                  Prva dva Share API-a korištena su za dijeljenje sadržaja na društvene mreže Facebook i Twitter. Nadalje, navedene
+                  su i jQuery biblioteke korištene za izradu dataTables prikaza i ReCaptcha sustava. Također nevedena je i DataTables
+                  biblioteka korištena za sortiranje, straničenje i filtriranje sadržaja u tablicama te ReCaptcha za sprječavanje pojave automata.
+                </p><br>
+        </section>
+    </body>
+</html>
+
+

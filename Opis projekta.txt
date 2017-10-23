@@ -1,0 +1,2 @@
+Web stranica namjenjena povezivanju interesnih skupina.
+Implementirano suèelje za neregistriranog korisnika, registriranog korisnika, moderatora i administratora.
